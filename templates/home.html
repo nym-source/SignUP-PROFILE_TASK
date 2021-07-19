@@ -1,0 +1,19 @@
+
+{% block content %}
+  {% if user.is_authenticated  %}
+    {% if user.profile.Category == 'Patient' %}
+      <h2>Welcome Patient, {{ user.username }}</h2>
+    {% endif %}
+    {% if user.profile.Category == 'Doctor' %}
+      <h2>Welcome Doctor, {{ user.username }}</h2>
+    {% endif %}
+    {% if request.user.is_superuser %}
+      <h2>Welcome Admin, {{ user.username }}</h2>
+    {% endif %}
+  {% endif %}
+  <img src="{{user.profile.profile_PIC.url}}" alt="" height="100" srcset="">
+  <p>User Full-Name: <b>{{ user.get_full_name }}</b></p>
+  <p>User Location: <b>{{ user.profile.Full_Address }}</b></p>
+  <p>User Location: <b>{{ user.profile.pincode }}</b></p>
+  <p>User Location: <b>{{ user.profile.city }}</b></p>
+{% endblock %}
